@@ -1,10 +1,10 @@
 ﻿#include "connection.h"
 #include "u_seller_service.h"
 #include "u_buyer_service.h"
+#include "u_admin_service.h"
 int main()
 {
-    seller_service service;
-    service._log_in();
-    service._update(45);
+    admin_service service;
+    service._update(43);
     return 0;
 }

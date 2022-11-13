@@ -33,13 +33,14 @@ void user_service::_create()
         con->init();
         int idx = 1;
         
-        PreparedStatement* pstmt = con->get_connection()->prepareStatement("INSERT INTO USERS VALUES(?, ?, ?, ?, ?, ?);");
+        PreparedStatement* pstmt = con->get_connection()->prepareStatement("INSERT INTO USERS VALUES(?, ?, ?, ?, ?, ?, ?);");
         pstmt->setInt(idx++, 0);
         pstmt->setString(idx++, user->get_name());
         pstmt->setString(idx++, user->get_family());
         pstmt->setString(idx++, user->get_username());
         pstmt->setString(idx++, user->get_password());
-        pstmt->setString(idx, user->get_role());
+        pstmt->setString(idx++, user->get_role());
+        pstmt->setString(idx, "No remarks");
 
         pstmt->execute();
 
