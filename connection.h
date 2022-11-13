@@ -8,8 +8,6 @@ using namespace sql;
 class connection { 
 	Driver* driver;
 	Connection* con;
-	PreparedStatement* pstmt;
-	ResultSet* result;
 public:
 	void init();
 
@@ -22,11 +20,8 @@ public:
 	/// <returns>PreparedStatement*</returns>
 	PreparedStatement* set_prepared_statement(string statement);
 
-	ResultSet* get_result_set();
+	Connection* get_connection();
 
-	void set_result_set(ResultSet* rs);
-
-	void clear();
 
 	void end();
 

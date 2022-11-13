@@ -4,14 +4,18 @@
 
 #include "c_common.h"
 
-class user
+class user_c
 {
 private:
     int id;
     string name, family, username, password, role;
 
 public:
-    user();
+    user_c();
+
+    int get_id();
+
+    void set_id(int id);
 
     string get_name();
 
@@ -29,7 +33,7 @@ public:
 
     void set_username(string usernam);
 
-    void set_password(string pass);
+    void set_password(string pass); 
 
     void set_role(string rol);
 };

@@ -11,13 +11,10 @@ PreparedStatement* connection::set_prepared_statement(string statement) {
 	
 }
 
-ResultSet* connection::get_result_set() {
-	return pstmt->getResultSet();
+Connection* connection::get_connection() {
+	return con;
 }
 
-void connection::set_result_set(ResultSet* rs) {
-	cout << "";
-}
 
 void connection::set_driver() {
 	try
@@ -44,20 +41,7 @@ void connection::set_connection() {
 	}
 }
 
-void connection::clear() {
-	if (pstmt != NULL)
-	{
-		delete pstmt;
-	}
-
-	if (result != NULL)
-	{
-		delete result;
-	}
-}
-
 void connection::end() {
-	clear();
 	if (con != NULL)
 	{
 		delete con;

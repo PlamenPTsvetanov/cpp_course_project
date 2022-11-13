@@ -6,10 +6,19 @@
 class user_service
 {
 private:
-    user user;
-    string in_name, in_family, in_username, in_password, in_role;
+    user_c *user;
+    string in_name, in_family, in_username, in_password;
+    int in_role;
 
 public:
+    user_service();
+
     void _create();
+
+    void _update();
+
+    void _log_in();
+
+    void _log_out();
 };
 #endif
