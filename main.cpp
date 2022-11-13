@@ -1,10 +1,8 @@
-﻿#include "u_user_service.h"
-#include "connection.h"
+﻿#include "connection.h"
+#include "u_buyer_service.h"
 int main()
 {
-    user_service u_service;
-
-    u_service._log_in();
-    u_service._log_out();
+    buyer_service service;
+    service._create();
     return 0;
 }

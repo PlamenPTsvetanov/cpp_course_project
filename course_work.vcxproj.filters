@@ -9,10 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Source Files\services">
       <UniqueIdentifier>{9397df22-1561-4fcb-8bd7-af08069081d0}</UniqueIdentifier>
     </Filter>
@@ -22,12 +18,21 @@
     <Filter Include="Source Files\database">
       <UniqueIdentifier>{6cded1f2-e904-422c-9a17-f747bc3e9f86}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\common">
+      <UniqueIdentifier>{ab9953b7-5a29-4eb8-82f6-ce49d357c22d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user">
+      <UniqueIdentifier>{9b32c2c8-b9a5-4715-985b-4965930c8f97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\buyer">
+      <UniqueIdentifier>{4ff6df26-649f-451d-a90b-0bdcc77dce42}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="u_user_service.cpp">
       <Filter>Source Files\services</Filter>
     </ClCompile>
-    <ClCompile Include="u_user.cpp">
+    <ClCompile Include="user_c.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
@@ -36,22 +41,34 @@
     <ClCompile Include="connection.cpp">
       <Filter>Source Files\database</Filter>
     </ClCompile>
+    <ClCompile Include="buyer_c.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="u_buyer_service.cpp">
+      <Filter>Source Files\services</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="c_common.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="u_user_service.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="u_user.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="d_database_common.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\common</Filter>
     </ClInclude>
     <ClInclude Include="connection.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="d_database_common.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="u_user.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="u_user_service.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="u_buyer.h">
+      <Filter>Header Files\user\buyer</Filter>
+    </ClInclude>
+    <ClInclude Include="u_buyer_service.h">
+      <Filter>Header Files\user\buyer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

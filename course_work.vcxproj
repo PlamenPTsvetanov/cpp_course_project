@@ -133,15 +133,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="buyer_c.cpp" />
     <ClCompile Include="connection.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="u_user.cpp" />
+    <ClCompile Include="user_c.cpp" />
+    <ClCompile Include="u_buyer_service.cpp" />
     <ClCompile Include="u_user_service.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="connection.h" />
     <ClInclude Include="c_common.h" />
     <ClInclude Include="d_database_common.h" />
+    <ClInclude Include="u_buyer.h" />
+    <ClInclude Include="u_buyer_service.h" />
     <ClInclude Include="u_user.h" />
     <ClInclude Include="u_user_service.h" />
   </ItemGroup>

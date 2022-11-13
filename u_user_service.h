@@ -5,7 +5,7 @@
 
 class user_service
 {
-private:
+protected:
     user_c *user;
     string in_name, in_family, in_username, in_password;
     int in_role;
@@ -15,10 +15,13 @@ public:
 
     void _create();
 
-    void _update();
+    void _update(int id);
 
-    void _log_in();
+    user_c* _log_in();
 
     void _log_out();
+
+protected:
+    int get_id();
 };
 #endif
