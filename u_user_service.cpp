@@ -70,25 +70,21 @@ void user_service::_update(int id = -1) {
     cin >> in_username;
     cout << "Update password:" << endl;
     cin >> in_password;
-    cout << "Update role\n\t1.buy\n\t2.sell" << endl;
-    cin >> in_role;
 
     user->set_name(in_name);
     user->set_family(in_family);
     user->set_username(in_username);
     user->set_password(in_password);
-    user->set_role(in_role == 2 ? "seller" : "buyer");
 
     connection* con = new connection();
     try {
         con->init();
         int idx = 1;
-        PreparedStatement* update = con->get_connection()->prepareStatement("UPDATE users SET name = ?, family = ?, username = ?, password = ?, role = ? WHERE ID = ?");
+        PreparedStatement* update = con->get_connection()->prepareStatement("UPDATE users SET name = ?, family = ?, username = ?, password = ? WHERE ID = ?");
         update->setString(idx++, user->get_name());
         update->setString(idx++, user->get_family());
         update->setString(idx++, user->get_username());
         update->setString(idx++, user->get_password());
-        update->setString(idx++, user->get_role());
         update->setInt(idx, id == -1 ? user->get_id() : id);
 
         update->executeQuery();
@@ -113,15 +109,18 @@ user_c* user_service::_log_in() {
 
     
     connection* con = new connection();
+    int id = -1;
     try {
-        int id = -1;
+        
         con->init();
-  
-        PreparedStatement* pstmt = con->get_connection()->prepareStatement("SELECT * FROM USERS WHERE USERNAME = ?");
-        pstmt->setString(1, in_username);
-        pstmt->executeQuery();
 
+        
+        PreparedStatement* pstmt = con->get_connection()->prepareStatement("SELECT id, name, family, username, password, role FROM USERS WHERE USERNAME = ?");
+        pstmt->setString(1, in_username);
+        pstmt->execute();
+        
         ResultSet* rs = pstmt->getResultSet();
+
         while (rs->next()) {
             id = rs->getInt(1);
             user->set_name(rs->getString(2));
@@ -130,21 +129,22 @@ user_c* user_service::_log_in() {
             user->set_password(rs->getString(5));
             user->set_role(rs->getString(6));
         }
-        
-        if (in_password == user->get_password())
-        {
-            user->set_id(id);
-            cout << "User with id : " << user->get_id() << " logged in!" << endl;
-        }
-        else {
-            cout << "Wrong password!";
-        }
-
+        delete rs;
         delete pstmt;
     }
     catch (sql::SQLException e) {
         con->get_connection()->rollback();
-        cerr << "Creation unsuccessful! Error message: " << e.what() << endl;
+        cerr << "Error message: " << e.what() << endl;
+    }
+
+    if (in_password == user->get_password())
+    {
+        user->set_id(id);
+        cout << "User with id : " << user->get_id() << " logged in!" << endl;
+    }
+    else {
+        throw InvalidArgumentException("Wrong password!\n");
+        system("exit");
     }
     delete con;
     return user;
@@ -167,7 +167,7 @@ int user_service::get_id() {
         PreparedStatement* pstmt = con->get_connection()->prepareStatement("SELECT ID FROM USERS WHERE USERNAME = ?");
         pstmt->setString(1, user->get_username());
 
-        pstmt->execute();
+        pstmt->executeQuery();
         ResultSet* rs = pstmt->getResultSet();
         
         while (rs->next()) {
@@ -179,6 +179,5 @@ int user_service::get_id() {
         con->get_connection()->rollback();
         cerr << "Error message: " << e.what() << endl;
     }
-    
     return id;
 }

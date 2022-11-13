@@ -35,3 +35,41 @@ void seller_service::_create() {
     }
     delete con;
 }
+
+void seller_service::_update(int id = -1) {
+    user_service::_update(id);
+
+    string email, telephone, info;
+    cout << "Update email:" << endl;
+    cin >> email;
+    cout << "Update telephone number:" << endl;
+    cin >> telephone;
+    cout << "Update additional info:" << endl;
+   
+    //removing whitespaces so we can read info
+    getline(cin >> ws, info);
+
+    connection* con = new connection();
+    try {
+        con->init();
+        int idx = 1;
+        PreparedStatement* pstmt = con->get_connection()
+            ->prepareStatement("UPDATE SELLERS SET email = ?, telephone = ?, info = ?  WHERE USER_ID = ?");
+        pstmt->setString(idx++, email);
+        pstmt->setString(idx++, telephone);
+        pstmt->setString(idx++, info);
+        pstmt->setInt(idx, user->get_id());
+
+        pstmt->execute();
+        cout << "Seller " << user->get_username() << " now has email -> " << email 
+                                                  << ", telepohne -> " << telephone
+                                                  << ", info -> " << info << endl;
+
+        delete pstmt;
+    }
+    catch (sql::SQLException e) {
+        con->get_connection()->rollback();
+        cerr << "Creation unsuccessful! Error message: " << e.what() << endl;
+    }
+    delete con;
+}

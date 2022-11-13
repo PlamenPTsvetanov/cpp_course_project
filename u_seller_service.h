@@ -6,5 +6,6 @@
 class seller_service : public user_service {
 public:
 	void _create();
+	void _update(int id);
 };
 #endif
