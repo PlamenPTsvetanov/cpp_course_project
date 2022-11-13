@@ -46,6 +46,7 @@ void user_service::_create()
         delete pstmt;
     }
     catch (sql::SQLException e) {
+        con->get_connection()->rollback();
         cerr << "Creation unsuccessful! Error message: " << e.what() << endl;
     }
    
@@ -95,6 +96,7 @@ void user_service::_update(int id = -1) {
         delete update;
     }
     catch (sql::SQLException e) {
+        con->get_connection()->rollback();
         cerr << "Update unsuccessful! Error message: " << e.what() << endl;
     }
     delete con;
@@ -141,6 +143,7 @@ user_c* user_service::_log_in() {
         delete pstmt;
     }
     catch (sql::SQLException e) {
+        con->get_connection()->rollback();
         cerr << "Creation unsuccessful! Error message: " << e.what() << endl;
     }
     delete con;
@@ -157,8 +160,8 @@ void user_service::_log_out() {
 
 int user_service::get_id() {
     int id = -1;
+    connection* con = new connection();
     try { 
-        connection* con = new connection();
         con->init();
 
         PreparedStatement* pstmt = con->get_connection()->prepareStatement("SELECT ID FROM USERS WHERE USERNAME = ?");
@@ -173,6 +176,7 @@ int user_service::get_id() {
         
     }
     catch (sql::SQLException e) {
+        con->get_connection()->rollback();
         cerr << "Error message: " << e.what() << endl;
     }
     

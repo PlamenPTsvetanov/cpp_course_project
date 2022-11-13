@@ -25,6 +25,7 @@ void buyer_service::_create() {
         delete pstmt;
     }
     catch (sql::SQLException e) {
+        con->get_connection()->rollback();
         cerr << "Creation unsuccessful! Error message: " << e.what() << endl;
     }
     delete con;

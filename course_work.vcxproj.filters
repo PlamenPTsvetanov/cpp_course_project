@@ -27,6 +27,9 @@
     <Filter Include="Header Files\user\buyer">
       <UniqueIdentifier>{4ff6df26-649f-451d-a90b-0bdcc77dce42}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\user\seller">
+      <UniqueIdentifier>{c32d8fad-6d34-44c9-a4dc-2c5a1ef336a6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="u_user_service.cpp">
@@ -45,6 +48,12 @@
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="u_buyer_service.cpp">
+      <Filter>Source Files\services</Filter>
+    </ClCompile>
+    <ClCompile Include="seller_c.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="u_seller_service.cpp">
       <Filter>Source Files\services</Filter>
     </ClCompile>
   </ItemGroup>
@@ -69,6 +78,12 @@
     </ClInclude>
     <ClInclude Include="u_buyer_service.h">
       <Filter>Header Files\user\buyer</Filter>
+    </ClInclude>
+    <ClInclude Include="u_seller.h">
+      <Filter>Header Files\user\seller</Filter>
+    </ClInclude>
+    <ClInclude Include="u_seller_service.h">
+      <Filter>Header Files\user\seller</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
