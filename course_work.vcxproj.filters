@@ -33,6 +33,15 @@
     <Filter Include="Header Files\user\admin">
       <UniqueIdentifier>{b5e349b5-950c-4cbf-909d-19da977cb643}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\storefront">
+      <UniqueIdentifier>{94ae639b-8f29-4fad-88b3-713fc3a29ffb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\storefront">
+      <UniqueIdentifier>{34baa00b-29a5-4308-80e5-1ddf08145df0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\storefront\vehicle">
+      <UniqueIdentifier>{5f8dc09c-8b5d-4113-a382-7b289749f1d8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="u_user_service.cpp">
@@ -61,6 +70,12 @@
     </ClCompile>
     <ClCompile Include="u_admin_service.cpp">
       <Filter>Source Files\services</Filter>
+    </ClCompile>
+    <ClCompile Include="vehicle.cpp">
+      <Filter>Source Files\storefront</Filter>
+    </ClCompile>
+    <ClCompile Include="v_vehicle_service.cpp">
+      <Filter>Source Files\storefront</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -93,6 +108,12 @@
     </ClInclude>
     <ClInclude Include="u_admin_service.h">
       <Filter>Header Files\user\admin</Filter>
+    </ClInclude>
+    <ClInclude Include="v_vehicle.h">
+      <Filter>Header Files\storefront\vehicle</Filter>
+    </ClInclude>
+    <ClInclude Include="v_vehicle_service.h">
+      <Filter>Header Files\storefront\vehicle</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

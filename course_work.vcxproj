@@ -142,6 +142,8 @@
     <ClCompile Include="seller_c.cpp" />
     <ClCompile Include="u_seller_service.cpp" />
     <ClCompile Include="u_user_service.cpp" />
+    <ClCompile Include="vehicle.cpp" />
+    <ClCompile Include="v_vehicle_service.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="connection.h" />
@@ -154,6 +156,8 @@
     <ClInclude Include="u_seller_service.h" />
     <ClInclude Include="u_user.h" />
     <ClInclude Include="u_user_service.h" />
+    <ClInclude Include="v_vehicle.h" />
+    <ClInclude Include="v_vehicle_service.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
