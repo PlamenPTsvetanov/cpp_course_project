@@ -159,6 +159,10 @@ void user_service::_log_out() {
     cout << "Logged out!" << endl;
 }
 
+int user_service::_logged_in_id() {
+    this->user->get_id();
+}
+
 int user_service::get_id() {
     int id = -1;
     connection* con = new connection();
@@ -181,4 +185,31 @@ int user_service::get_id() {
         cerr << "Error message: " << e.what() << endl;
     }
     return id;
+}
+
+bool user_service::user_exists(int id) {
+    bool flag = false;
+    connection* con = new connection();
+    try {
+        con->init();
+        PreparedStatement* pstmt = con->get_connection()->prepareStatement("SELECT ID FROM USERS WHERE ID = ?");
+        pstmt->setInt(1, id);
+        pstmt->execute();
+        ResultSet* rs = pstmt->getResultSet();
+
+        flag = rs->next();
+
+        delete rs;
+        delete pstmt;
+    }
+    catch (SQLException e) {
+        con->get_connection()->rollback();
+        cerr << "Creation unsuccessful! Error message: " << e.what() << endl;
+    }
+    if (!flag) {
+        throw InvalidArgumentException("No user with this ID found!\n");
+        system("exit");
+    }
+    delete con;
+    return flag;
 }

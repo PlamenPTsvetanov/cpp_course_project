@@ -5,5 +5,7 @@
 // Header includes all commonly used libraries
 // and ensures only one load
 #include <iostream>
+#include <string>
+#include <chrono>
 using namespace std;
 #endif

@@ -133,9 +133,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="s_ad.cpp" />
     <ClCompile Include="buyer_c.cpp" />
     <ClCompile Include="connection.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="s_ad_service.cpp" />
     <ClCompile Include="user_c.cpp" />
     <ClCompile Include="u_admin_service.cpp" />
     <ClCompile Include="u_buyer_service.cpp" />
@@ -146,9 +148,11 @@
     <ClCompile Include="v_vehicle_service.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="s_ad.h" />
     <ClInclude Include="connection.h" />
     <ClInclude Include="c_common.h" />
     <ClInclude Include="d_database_common.h" />
+    <ClInclude Include="s_ad_service.h" />
     <ClInclude Include="u_admin_service.h" />
     <ClInclude Include="u_buyer.h" />
     <ClInclude Include="u_buyer_service.h" />

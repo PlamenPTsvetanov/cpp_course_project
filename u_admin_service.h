@@ -10,7 +10,5 @@ public:
 	void get_all_users();
 	void _update(int id);
 	void _delete(int id);
-private: 
-	bool user_exists(int id);
 };
 #endif

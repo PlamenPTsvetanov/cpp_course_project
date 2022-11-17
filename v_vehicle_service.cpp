@@ -57,14 +57,14 @@ void vehicle_service::_create() {
 
 void vehicle_service::_update() {
 
-	int year_of_construction, horse_power;
+	int id, year_of_construction, horse_power;
 	string type, brand, model;
 
 	connection* con = new connection();
 	try {
 		con->init();
 
-		check_vehicle();
+		id = check_vehicle();
 
 		cout << "Update type of vehicle:" << endl;
 		cin >> type;
@@ -87,13 +87,13 @@ void vehicle_service::_update() {
 		vehicle->set_horse_power(horse_power);
 
 		int idx = 0;
-		PreparedStatement* pstmt = con->get_connection()->prepareStatement("INSERT INTO VEHICLES VALUES(?, ?, ?, ?, ?, ?)");
-		pstmt->setInt(idx++, 0);
+		PreparedStatement* pstmt = con->get_connection()->prepareStatement("UPDATE VEHICLES SET TYPE = ?, BRAND = ?, MODEL = ?, YEAR_OF_CONSTRUCTION = ?, HORSE_POWER = ? WHERE ID = ?");
 		pstmt->setString(idx++, vehicle->get_type());
 		pstmt->setString(idx++, vehicle->get_brand());
 		pstmt->setString(idx++, vehicle->get_model());
 		pstmt->setInt(idx++, vehicle->get_year());
 		pstmt->setInt(idx, vehicle->get_horse_power());
+		pstmt->setInt(idx, id);
 
 		pstmt->execute();
 
@@ -110,13 +110,13 @@ void vehicle_service::_update() {
 void vehicle_service::_delete() {
 
 	string brand, model;
-	int id;
+	int id = -1;
 
 	connection* con = new connection();
 	try {
 		con->init();
 
-		check_vehicle();
+		id = check_vehicle();
 
 		int idx = 0;
 		PreparedStatement* pstmt = con->get_connection()->prepareStatement("DELETE FROM VEHICLES WHERE ID = ?");
@@ -133,8 +133,9 @@ void vehicle_service::_delete() {
 	delete con;
 }
 
-void vehicle_service::check_vehicle() {
+int vehicle_service::check_vehicle() {
 	string brand, model;
+	int id = -1;
 
 	cout << "Brand of vehicle to update:" << endl;
 	cin >> brand;
@@ -149,12 +150,13 @@ void vehicle_service::check_vehicle() {
 
 	ResultSet* rs = pstmt->getResultSet();
 	if (rs->next()) {
-		cout << "Vehicle found! ID is : " << rs->getInt(1) << endl;
+		id = rs->getInt(1);
 	}
 	else {
 		cout << "No such vehicle found!" << endl;
-		return;
 	}
 	delete pstmt;
 	delete rs;
+
+	return id;
 }

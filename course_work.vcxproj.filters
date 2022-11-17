@@ -42,6 +42,9 @@
     <Filter Include="Header Files\storefront\vehicle">
       <UniqueIdentifier>{5f8dc09c-8b5d-4113-a382-7b289749f1d8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\storefront\ad">
+      <UniqueIdentifier>{2a7de0aa-4dd8-4448-ba50-7cd6f447f665}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="u_user_service.cpp">
@@ -75,6 +78,12 @@
       <Filter>Source Files\storefront</Filter>
     </ClCompile>
     <ClCompile Include="v_vehicle_service.cpp">
+      <Filter>Source Files\storefront</Filter>
+    </ClCompile>
+    <ClCompile Include="s_ad.cpp">
+      <Filter>Source Files\storefront</Filter>
+    </ClCompile>
+    <ClCompile Include="s_ad_service.cpp">
       <Filter>Source Files\storefront</Filter>
     </ClCompile>
   </ItemGroup>
@@ -114,6 +123,12 @@
     </ClInclude>
     <ClInclude Include="v_vehicle_service.h">
       <Filter>Header Files\storefront\vehicle</Filter>
+    </ClInclude>
+    <ClInclude Include="s_ad.h">
+      <Filter>Header Files\storefront\ad</Filter>
+    </ClInclude>
+    <ClInclude Include="s_ad_service.h">
+      <Filter>Header Files\storefront\ad</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

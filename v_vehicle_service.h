@@ -13,6 +13,6 @@ public:
 	void _update();
 	void _delete();
 private:
-	void check_vehicle();
+	int check_vehicle();
 };
 #endif

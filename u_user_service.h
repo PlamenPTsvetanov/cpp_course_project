@@ -21,6 +21,10 @@ public:
 
     void _log_out();
 
+    bool user_exists(int id);
+
+    int _logged_in_id();
+
 protected:
     int get_id();
 };

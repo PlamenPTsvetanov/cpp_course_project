@@ -98,32 +98,4 @@ void admin_service::_update(int id) {
         cerr << "Update unsuccessful! Error message: " << e.what() << endl;
     }
     delete con;
-}
-
-
-bool admin_service::user_exists(int id) {
-    bool flag = false;
-    connection* con = new connection();
-    try {
-        con->init();
-        PreparedStatement* pstmt = con->get_connection()->prepareStatement("SELECT ID FROM USERS WHERE ID = ?");
-        pstmt->setInt(1, id);
-        pstmt->execute();
-        ResultSet* rs = pstmt->getResultSet();
-
-        flag = rs->next();
-
-        delete rs;
-        delete pstmt;
-    }
-    catch (SQLException e) {
-        con->get_connection()->rollback();
-        cerr << "Creation unsuccessful! Error message: " << e.what() << endl;
-    }
-    if (!flag) {
-        throw InvalidArgumentException("No user with this ID found!\n");
-        system("exit");
-    }
-    delete con;
-    return flag;
-}
+} 
