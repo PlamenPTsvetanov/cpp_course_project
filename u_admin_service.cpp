@@ -38,16 +38,29 @@ void admin_service::get_all_users() {
 }
 
 void admin_service::_delete(int id) {
+    int type = -1;
     bool flag = user_exists(id);
     connection* con = new connection();
     try {
         con->init();
         if (flag)
         {
-            PreparedStatement* pstmt = con->get_connection()->prepareStatement("DELETE FROM USERS WHERE ID = ?");
+            PreparedStatement* pstmt = con->get_connection()->prepareStatement("DELETE FROM BUYERS WHERE USER_ID = ?");
             pstmt->setInt(1, id);
             pstmt->execute();
-            cout << "User deleted";
+            cout << "Connection from buyers removed!" << endl;
+            delete pstmt;
+
+            pstmt = con->get_connection()->prepareStatement("DELETE FROM SELLERS WHERE USER_ID = ?");
+            pstmt->setInt(1, id);
+            pstmt->execute();
+            cout << "Connection from sellers removed" << endl;
+            delete pstmt;
+
+            pstmt = con->get_connection()->prepareStatement("DELETE FROM USERS WHERE ID = ?");
+            pstmt->setInt(1, id);
+            pstmt->execute();
+            cout << "User deleted" << endl;
             delete pstmt;
         }
     }
