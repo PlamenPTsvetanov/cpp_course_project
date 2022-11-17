@@ -12,5 +12,7 @@ public:
 	void _create();
 	void _update();
 	void _delete();
+private:
+	void check_vehicle();
 };
 #endif

@@ -64,27 +64,7 @@ void vehicle_service::_update() {
 	try {
 		con->init();
 
-		cout << "Brand of vehicle to update:" << endl;
-		cin >> brand;
-
-		cout << "Model of vehicle to update:" << endl;
-		cin >> model;
-
-		//TODO Дублиране на код
-		PreparedStatement* pstmt = con->get_connection()->prepareStatement("SELECT ID FROM VEHICLES WHERE BRAND = ? AND MODEL = ?");
-		pstmt->setString(1, brand);
-		pstmt->setString(2, model);
-
-		ResultSet* rs = pstmt->getResultSet();
-		if (rs->next()) {
-			cout << "Vehicle found! ID is : " << rs->getInt(1) << endl;
-		}
-		else {
-			cout << "No such vehicle found!" << endl;
-			return;
-		}
-		delete pstmt;
-		delete rs;
+		check_vehicle();
 
 		cout << "Update type of vehicle:" << endl;
 		cin >> type;
@@ -107,7 +87,7 @@ void vehicle_service::_update() {
 		vehicle->set_horse_power(horse_power);
 
 		int idx = 0;
-		pstmt = con->get_connection()->prepareStatement("INSERT INTO VEHICLES VALUES(?, ?, ?, ?, ?, ?)");
+		PreparedStatement* pstmt = con->get_connection()->prepareStatement("INSERT INTO VEHICLES VALUES(?, ?, ?, ?, ?, ?)");
 		pstmt->setInt(idx++, 0);
 		pstmt->setString(idx++, vehicle->get_type());
 		pstmt->setString(idx++, vehicle->get_brand());
@@ -136,31 +116,10 @@ void vehicle_service::_delete() {
 	try {
 		con->init();
 
-		cout << "Brand of vehicle to delete:" << endl;
-		cin >> brand;
-
-		cout << "Model of vehicle to delete:" << endl;
-		cin >> model;
-
-		//Дублиране на код
-		PreparedStatement* pstmt = con->get_connection()->prepareStatement("SELECT ID FROM VEHICLES WHERE BRAND = ? AND MODEL = ?");
-		pstmt->setString(1, brand);
-		pstmt->setString(2, model);
-
-		ResultSet* rs = pstmt->getResultSet();
-		if (rs->next()) {
-			id = rs->getInt(1);
-			cout << "Vehicle found! ID is : " << id << endl;
-		}
-		else {
-			cout << "No such vehicle found!" << endl;
-			return;
-		}
-		delete pstmt;
-		delete rs;
+		check_vehicle();
 
 		int idx = 0;
-		pstmt = con->get_connection()->prepareStatement("DELETE FROM VEHICLES WHERE ID = ?");
+		PreparedStatement* pstmt = con->get_connection()->prepareStatement("DELETE FROM VEHICLES WHERE ID = ?");
 		pstmt->setInt(idx++, id);
 
 		pstmt->execute();
@@ -172,5 +131,30 @@ void vehicle_service::_delete() {
 		cerr << "Deletion unsuccessful! Error message: " << e.what() << endl;
 	}
 	delete con;
+}
 
+void vehicle_service::check_vehicle() {
+	string brand, model;
+
+	cout << "Brand of vehicle to update:" << endl;
+	cin >> brand;
+
+	cout << "Model of vehicle to update:" << endl;
+	cin >> model;
+
+	connection* con;
+	PreparedStatement* pstmt = con->get_connection()->prepareStatement("SELECT ID FROM VEHICLES WHERE BRAND = ? AND MODEL = ?");
+	pstmt->setString(1, brand);
+	pstmt->setString(2, model);
+
+	ResultSet* rs = pstmt->getResultSet();
+	if (rs->next()) {
+		cout << "Vehicle found! ID is : " << rs->getInt(1) << endl;
+	}
+	else {
+		cout << "No such vehicle found!" << endl;
+		return;
+	}
+	delete pstmt;
+	delete rs;
 }
