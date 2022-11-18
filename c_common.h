@@ -7,5 +7,6 @@
 #include <iostream>
 #include <string>
 #include <chrono>
+#include <vector>
 using namespace std;
 #endif

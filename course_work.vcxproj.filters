@@ -86,6 +86,21 @@
     <ClCompile Include="s_ad_service.cpp">
       <Filter>Source Files\storefront</Filter>
     </ClCompile>
+    <ClCompile Include="storefront.cpp">
+      <Filter>Source Files\storefront</Filter>
+    </ClCompile>
+    <ClCompile Include="storefront_service.cpp">
+      <Filter>Source Files\storefront</Filter>
+    </ClCompile>
+    <ClCompile Include="v_truck.cpp">
+      <Filter>Source Files\storefront</Filter>
+    </ClCompile>
+    <ClCompile Include="v_sedan.cpp">
+      <Filter>Source Files\storefront</Filter>
+    </ClCompile>
+    <ClCompile Include="v_two_wheeler.cpp">
+      <Filter>Source Files\storefront</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="c_common.h">
@@ -132,6 +147,21 @@
     </ClInclude>
     <ClInclude Include="service_header.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="storefront.h">
+      <Filter>Header Files\storefront</Filter>
+    </ClInclude>
+    <ClInclude Include="storefront_service.h">
+      <Filter>Header Files\storefront</Filter>
+    </ClInclude>
+    <ClInclude Include="v_truck.h">
+      <Filter>Header Files\storefront\vehicle</Filter>
+    </ClInclude>
+    <ClInclude Include="v_sedan.h">
+      <Filter>Header Files\storefront\vehicle</Filter>
+    </ClInclude>
+    <ClInclude Include="v_two_wheeler.h">
+      <Filter>Header Files\storefront\vehicle</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

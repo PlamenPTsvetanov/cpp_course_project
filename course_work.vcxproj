@@ -133,6 +133,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="storefront.cpp" />
+    <ClCompile Include="storefront_service.cpp" />
     <ClCompile Include="s_ad.cpp" />
     <ClCompile Include="buyer_c.cpp" />
     <ClCompile Include="connection.cpp" />
@@ -144,11 +146,16 @@
     <ClCompile Include="seller_c.cpp" />
     <ClCompile Include="u_seller_service.cpp" />
     <ClCompile Include="u_user_service.cpp" />
+    <ClCompile Include="v_sedan.cpp" />
+    <ClCompile Include="v_truck.cpp" />
+    <ClCompile Include="v_two_wheeler.cpp" />
     <ClCompile Include="v_vehicle.cpp" />
     <ClCompile Include="v_vehicle_service.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="service_header.h" />
+    <ClInclude Include="storefront.h" />
+    <ClInclude Include="storefront_service.h" />
     <ClInclude Include="s_ad.h" />
     <ClInclude Include="connection.h" />
     <ClInclude Include="c_common.h" />
@@ -161,6 +168,9 @@
     <ClInclude Include="u_seller_service.h" />
     <ClInclude Include="u_user.h" />
     <ClInclude Include="u_user_service.h" />
+    <ClInclude Include="v_sedan.h" />
+    <ClInclude Include="v_truck.h" />
+    <ClInclude Include="v_two_wheeler.h" />
     <ClInclude Include="v_vehicle.h" />
     <ClInclude Include="v_vehicle_service.h" />
   </ItemGroup>
