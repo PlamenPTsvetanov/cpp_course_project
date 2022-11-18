@@ -14,11 +14,13 @@ void vehicle_service::_create() {
 	vehicle->set_type(type);
 
 	cout << "Enter brand of vehicle:" << endl;
-	cin >> brand;
+	cin >> ws;
+	getline(cin, brand);
 	vehicle->set_brand(brand);
 
 	cout << "Enter model of vehicle:" << endl;
-	cin >> model;
+	cin >> ws;
+	getline(cin, model);
 	vehicle->set_model(model);
 
 	cout << "Enter year of construction of vehicle:" << endl;
@@ -34,7 +36,7 @@ void vehicle_service::_create() {
 	try {
 		con->init();
 
-		int idx = 0;
+		int idx = 1;
 		PreparedStatement* pstmt = con->get_connection()->prepareStatement("INSERT INTO VEHICLES VALUES(?, ?, ?, ?, ?, ?)");
 		pstmt->setInt(idx++, 0);
 		pstmt->setString(idx++, vehicle->get_type());
@@ -44,8 +46,10 @@ void vehicle_service::_create() {
 		pstmt->setInt(idx, vehicle->get_horse_power());
 
 		pstmt->execute();
-
+		
 		delete pstmt;
+
+		cout << "Creation of car " << vehicle->get_brand() << " " << vehicle->get_model() << endl;
 	}
 	catch (sql::SQLException e) {
 		con->get_connection()->rollback();
@@ -60,11 +64,11 @@ void vehicle_service::_update() {
 	int id, year_of_construction, horse_power;
 	string type, brand, model;
 
+	id = check_vehicle();
 	connection* con = new connection();
 	try {
-		con->init();
 
-		id = check_vehicle();
+		con->init();
 
 		cout << "Update type of vehicle:" << endl;
 		cin >> type;
@@ -86,18 +90,19 @@ void vehicle_service::_update() {
 		cin >> horse_power;
 		vehicle->set_horse_power(horse_power);
 
-		int idx = 0;
+		int idx = 1;
 		PreparedStatement* pstmt = con->get_connection()->prepareStatement("UPDATE VEHICLES SET TYPE = ?, BRAND = ?, MODEL = ?, YEAR_OF_CONSTRUCTION = ?, HORSE_POWER = ? WHERE ID = ?");
 		pstmt->setString(idx++, vehicle->get_type());
 		pstmt->setString(idx++, vehicle->get_brand());
 		pstmt->setString(idx++, vehicle->get_model());
 		pstmt->setInt(idx++, vehicle->get_year());
-		pstmt->setInt(idx, vehicle->get_horse_power());
+		pstmt->setInt(idx++, vehicle->get_horse_power());
 		pstmt->setInt(idx, id);
 
-		pstmt->execute();
+		pstmt->executeQuery();
 
 		delete pstmt;
+		cout << "Updated entry!" << endl;
 	}
 	catch (sql::SQLException e) {
 		con->get_connection()->rollback();
@@ -118,13 +123,14 @@ void vehicle_service::_delete() {
 
 		id = check_vehicle();
 
-		int idx = 0;
+		int idx = 1;
 		PreparedStatement* pstmt = con->get_connection()->prepareStatement("DELETE FROM VEHICLES WHERE ID = ?");
 		pstmt->setInt(idx++, id);
 
 		pstmt->execute();
 
 		delete pstmt;
+		cout << "Deleted entry!" << endl;
 	}
 	catch (sql::SQLException e) {
 		con->get_connection()->rollback();
@@ -138,25 +144,32 @@ int vehicle_service::check_vehicle() {
 	int id = -1;
 
 	cout << "Brand of vehicle to update:" << endl;
-	cin >> brand;
+	cin >> ws;
+	getline(cin, brand);
 
 	cout << "Model of vehicle to update:" << endl;
-	cin >> model;
+	cin >> ws;
+	getline(cin, model);
 
-	connection* con;
+	connection* con = new connection();
+	con->init();
+
 	PreparedStatement* pstmt = con->get_connection()->prepareStatement("SELECT ID FROM VEHICLES WHERE BRAND = ? AND MODEL = ?");
 	pstmt->setString(1, brand);
 	pstmt->setString(2, model);
 
+	pstmt->execute();
 	ResultSet* rs = pstmt->getResultSet();
+
 	if (rs->next()) {
 		id = rs->getInt(1);
 	}
 	else {
-		cout << "No such vehicle found!" << endl;
+		throw invalid_argument("No vehicle found!");
 	}
 	delete pstmt;
 	delete rs;
+	delete con;
 
 	return id;
 }

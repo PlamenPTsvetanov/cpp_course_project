@@ -49,13 +49,13 @@ void ad_c::set_price(double price){
 };
 
 void ad_c::set_date(){
-	time_t now = time(0);
+	/*time_t now = time(0);
 
 
-	tm* local = localtime(&now);
+	tm* local = localtime_s(NULL, &now);
 	this->date.day = local->tm_mday;
 	this->date.month = local->tm_mon + 1;
-	this->date.year = local->tm_year + 1900;
+	this->date.year = local->tm_year + 1900;*/
 };
 
 void ad_c::set_additional_info(string info){

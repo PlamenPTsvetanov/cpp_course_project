@@ -144,7 +144,7 @@
     <ClCompile Include="seller_c.cpp" />
     <ClCompile Include="u_seller_service.cpp" />
     <ClCompile Include="u_user_service.cpp" />
-    <ClCompile Include="vehicle.cpp" />
+    <ClCompile Include="v_vehicle.cpp" />
     <ClCompile Include="v_vehicle_service.cpp" />
   </ItemGroup>
   <ItemGroup>

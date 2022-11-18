@@ -74,7 +74,7 @@
     <ClCompile Include="u_admin_service.cpp">
       <Filter>Source Files\services</Filter>
     </ClCompile>
-    <ClCompile Include="vehicle.cpp">
+    <ClCompile Include="v_vehicle.cpp">
       <Filter>Source Files\storefront</Filter>
     </ClCompile>
     <ClCompile Include="v_vehicle_service.cpp">
