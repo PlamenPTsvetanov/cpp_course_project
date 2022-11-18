@@ -3,7 +3,7 @@
 
 int main()
 {
-    vehicle_service service;
-    service._delete();
+    ad_service service;
+    service._delete(2);
     return 0;
 }

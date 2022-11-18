@@ -148,6 +148,7 @@
     <ClCompile Include="v_vehicle_service.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="service_header.h" />
     <ClInclude Include="s_ad.h" />
     <ClInclude Include="connection.h" />
     <ClInclude Include="c_common.h" />

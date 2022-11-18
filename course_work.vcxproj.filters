@@ -130,5 +130,8 @@
     <ClInclude Include="s_ad_service.h">
       <Filter>Header Files\storefront\ad</Filter>
     </ClInclude>
+    <ClInclude Include="service_header.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
