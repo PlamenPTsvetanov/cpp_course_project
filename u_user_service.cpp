@@ -9,7 +9,7 @@ user_service::user_service() {
 /// <summary>
 /// Създава нов потребител
 /// </summary>
-void user_service::_create()
+user_c* user_service::_create()
 {
     cout << "Enter your first name:" << endl;
     cin >> in_name;
@@ -19,39 +19,13 @@ void user_service::_create()
     cin >> in_username;
     cout << "Enter your password:" << endl;
     cin >> in_password;
-    cout << "Do you wish to\n\t1.buy\n\t2.sell" << endl;
-    cin >> in_role;
 
     user->set_name(in_name);
     user->set_family(in_family);
     user->set_username(in_username);
     user->set_password(in_password);
-    user->set_role(in_role == 2 ? "seller" : "buyer");
 
-    connection* con = new connection();
-    try {
-        con->init();
-        int idx = 1;
-        
-        PreparedStatement* pstmt = con->get_connection()->prepareStatement("INSERT INTO USERS VALUES(?, ?, ?, ?, ?, ?, ?);");
-        pstmt->setInt(idx++, 0);
-        pstmt->setString(idx++, user->get_name());
-        pstmt->setString(idx++, user->get_family());
-        pstmt->setString(idx++, user->get_username());
-        pstmt->setString(idx++, user->get_password());
-        pstmt->setString(idx++, user->get_role());
-        pstmt->setString(idx, "No remarks");
-
-        pstmt->execute();
-
-        delete pstmt;
-    }
-    catch (sql::SQLException e) {
-        con->get_connection()->rollback();
-        cerr << "Creation unsuccessful! Error message: " << e.what() << endl;
-    }
-   
-    delete con;
+    return user;
 };
 
 /// <summary>
@@ -62,7 +36,7 @@ void user_service::_create()
 /// всички потребители и да ги променя
 /// </summary>
 /// <param name="id"></param>
-void user_service::_update(int id = -1) {
+user_c* user_service::_update(int id = -1) {
     cout << "Update first name:" << endl;
     cin >> in_name;
     cout << "Update family name:" << endl;
@@ -76,25 +50,24 @@ void user_service::_update(int id = -1) {
     user->set_family(in_family);
     user->set_username(in_username);
     user->set_password(in_password);
+    return user;
+}
 
+void user_service::_delete(int id, string table) {
+    user_exists(id, table);
     connection* con = new connection();
     try {
         con->init();
         int idx = 1;
-        PreparedStatement* update = con->get_connection()->prepareStatement("UPDATE users SET name = ?, family = ?, username = ?, password = ? WHERE ID = ?");
-        update->setString(idx++, user->get_name());
-        update->setString(idx++, user->get_family());
-        update->setString(idx++, user->get_username());
-        update->setString(idx++, user->get_password());
-        update->setInt(idx, id == -1 ? user->get_id() : id);
+        PreparedStatement* pstmt = con->get_connection()->prepareStatement("DELETE FROM " + table + " WHERE ID = ?");
+        pstmt->setInt(idx, id);
 
-        update->executeQuery();
-
-        delete update;
+        pstmt->execute();
+        delete pstmt;
     }
     catch (sql::SQLException e) {
         con->get_connection()->rollback();
-        cerr << "Update unsuccessful! Error message: " << e.what() << endl;
+        cerr << "Deletion unsuccessful! Error message: " << e.what() << endl;
     }
     delete con;
 }
@@ -102,7 +75,7 @@ void user_service::_update(int id = -1) {
 /// <summary>
 /// Логва потребител в системата
 /// </summary>
-user_c* user_service::_log_in() {
+user_c* user_service::_log_in(string table) {
     cout << "Enter your username:" << endl;
     cin >> in_username;
     cout << "Enter your password:" << endl;
@@ -116,7 +89,7 @@ user_c* user_service::_log_in() {
         con->init();
 
         
-        PreparedStatement* pstmt = con->get_connection()->prepareStatement("SELECT id, name, family, username, password, role FROM USERS WHERE USERNAME = ?");
+        PreparedStatement* pstmt = con->get_connection()->prepareStatement("SELECT id, name, family, username, password FROM " + table + " WHERE USERNAME = ? ");
         pstmt->setString(1, in_username);
         pstmt->execute();
         
@@ -128,7 +101,6 @@ user_c* user_service::_log_in() {
             user->set_family(rs->getString(3));
             user->set_username(rs->getString(4));
             user->set_password(rs->getString(5));
-            user->set_role(rs->getString(6));
         }
         delete rs;
         delete pstmt;
@@ -160,39 +132,15 @@ void user_service::_log_out() {
 }
 
 int user_service::_logged_in_id() {
-    this->user->get_id();
+    return this->user->get_id();
 }
 
-int user_service::get_id() {
-    int id = -1;
-    connection* con = new connection();
-    try { 
-        con->init();
-
-        PreparedStatement* pstmt = con->get_connection()->prepareStatement("SELECT ID FROM USERS WHERE USERNAME = ?");
-        pstmt->setString(1, user->get_username());
-
-        pstmt->executeQuery();
-        ResultSet* rs = pstmt->getResultSet();
-        
-        while (rs->next()) {
-            id = rs->getInt(1);
-        }
-        
-    }
-    catch (sql::SQLException e) {
-        con->get_connection()->rollback();
-        cerr << "Error message: " << e.what() << endl;
-    }
-    return id;
-}
-
-bool user_service::user_exists(int id) {
+void user_service::user_exists(int id, string table) {
     bool flag = false;
     connection* con = new connection();
     try {
         con->init();
-        PreparedStatement* pstmt = con->get_connection()->prepareStatement("SELECT ID FROM USERS WHERE ID = ?");
+        PreparedStatement* pstmt = con->get_connection()->prepareStatement("SELECT ID FROM " + table +" WHERE ID = ?");
         pstmt->setInt(1, id);
         pstmt->execute();
         ResultSet* rs = pstmt->getResultSet();
@@ -211,5 +159,4 @@ bool user_service::user_exists(int id) {
         system("exit");
     }
     delete con;
-    return flag;
 }

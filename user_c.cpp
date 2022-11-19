@@ -26,11 +26,6 @@ string user_c::get_password()
     return this->password;
 };
 
-string user_c::get_role()
-{
-    return this->role;
-};
-
 void user_c::set_id(int id)
 {
     this->id = id;
@@ -56,18 +51,18 @@ void user_c::set_password(string pass)
     password = pass;
 };
 
-void user_c::set_role(string rol)
-{
-    if (rol == "seller")
-    {
-        role = "seller";
-    }
-    else if (rol == "admin")
-    {
-        role = "admin";
-    }
-    else
-    {
-        role = "buyer";
-    }
-};
+string user_c::get_admin_remark() {
+    return this->admin_remark;
+}
+
+void user_c::set_admin_remark(string remark) {
+    this->admin_remark = remark;
+}
+
+void user_c::inherit(user_c* parent) {
+    this->set_name(parent->get_name());
+    this->set_family(parent->get_family());
+    this->set_username(parent->get_username());
+    this->set_password(parent->get_password());
+    this->set_admin_remark(parent->get_admin_remark());
+}

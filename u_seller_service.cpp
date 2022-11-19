@@ -2,7 +2,7 @@
 
 void seller_service::_create() {
     user_service::_create();
-    user->set_id(user_service::get_id());
+    //user->set_id(user_service::get_id());
 
     string email, telephone, payment_info;
     cout << "Enter email:" << endl;

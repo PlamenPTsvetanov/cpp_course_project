@@ -9,10 +9,9 @@ void printPrimaryMenu() {
 
 int main()
 {
-    motorcycle_service service;
-    vector<int> ids = service.get_many();
-    vehicle_c* veh = service.get_one(ids.at(0));
-    veh->print_data();
+    buyer_service service;
+    service._log_in("BUYERS");
+    service._delete();
     return 0;
 }
 

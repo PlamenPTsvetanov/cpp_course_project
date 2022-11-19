@@ -8,7 +8,7 @@ class user_c
 {
 private:
     int id;
-    string name, family, username, password, role;
+    string name, family, username, password, admin_remark;
 
 public:
     user_c();
@@ -25,7 +25,7 @@ public:
 
     string get_password();
 
-    string get_role();
+    string get_admin_remark();
 
     void set_name(string nam);
 
@@ -35,6 +35,8 @@ public:
 
     void set_password(string pass); 
 
-    void set_role(string rol);
+    void set_admin_remark(string remark);
+
+    void inherit(user_c* parent);
 };
 #endif

@@ -39,30 +39,30 @@ void admin_service::get_all_users() {
 
 void admin_service::_delete(int id) {
     int type = -1;
-    bool flag = user_exists(id);
+    //user_exists(id);
+
     connection* con = new connection();
     try {
         con->init();
-        if (flag)
-        {
-            PreparedStatement* pstmt = con->get_connection()->prepareStatement("DELETE FROM BUYERS WHERE USER_ID = ?");
-            pstmt->setInt(1, id);
-            pstmt->execute();
-            cout << "Connection from buyers removed!" << endl;
-            delete pstmt;
+        
+        PreparedStatement* pstmt = con->get_connection()->prepareStatement("DELETE FROM BUYERS WHERE USER_ID = ?");
+        pstmt->setInt(1, id);
+        pstmt->execute();
+        cout << "Connection from buyers removed!" << endl;
+        delete pstmt;
 
-            pstmt = con->get_connection()->prepareStatement("DELETE FROM SELLERS WHERE USER_ID = ?");
-            pstmt->setInt(1, id);
-            pstmt->execute();
-            cout << "Connection from sellers removed" << endl;
-            delete pstmt;
+        pstmt = con->get_connection()->prepareStatement("DELETE FROM SELLERS WHERE USER_ID = ?");
+        pstmt->setInt(1, id);
+        pstmt->execute();
+        cout << "Connection from sellers removed" << endl;
+        delete pstmt;
 
-            pstmt = con->get_connection()->prepareStatement("DELETE FROM USERS WHERE ID = ?");
-            pstmt->setInt(1, id);
-            pstmt->execute();
-            cout << "User deleted" << endl;
-            delete pstmt;
-        }
+        pstmt = con->get_connection()->prepareStatement("DELETE FROM USERS WHERE ID = ?");
+        pstmt->setInt(1, id);
+        pstmt->execute();
+        cout << "User deleted" << endl;
+        delete pstmt;
+        
     }
     catch (sql::SQLException e) {
         con->get_connection()->rollback();
@@ -72,26 +72,25 @@ void admin_service::_delete(int id) {
 }
 
 void admin_service::_update(int id) {
-    bool flag = user_exists(id);
+    //user_exists(id);
     connection* con = new connection();
     try {
         con->init();
-        if (flag)
-        {
-            user_service::_update(id);
+        
+        user_service::_update(id);
 
-            cout << "Enter your comment: " << endl;
-            cin >> ws;
-            string admin_remark;
-            getline(cin, admin_remark);
+        cout << "Enter your comment: " << endl;
+        cin >> ws;
+        string admin_remark;
+        getline(cin, admin_remark);
 
-            PreparedStatement* pstmt = con->get_connection()->prepareStatement("UPDATE USERS SET ADMIN_REMARK = ? WHERE ID = ?");
-            pstmt->setString(1, admin_remark);
-            pstmt->setInt(2, id);
-            pstmt->execute();
-            cout << "User updated";
-            delete pstmt;
-        }
+        PreparedStatement* pstmt = con->get_connection()->prepareStatement("UPDATE USERS SET ADMIN_REMARK = ? WHERE ID = ?");
+        pstmt->setString(1, admin_remark);
+        pstmt->setInt(2, id);
+        pstmt->execute();
+        cout << "User updated";
+        delete pstmt;
+        
     }
     catch (sql::SQLException e) {
         con->get_connection()->rollback();
