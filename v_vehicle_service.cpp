@@ -55,7 +55,7 @@ vehicle_c* vehicle_service::_update(int id) {
 	return vehicle;
 }
 
-vehicle_c* vehicle_service::_delete(int id, string table)  {
+void vehicle_service::_delete(int id, string table)  {
 	connection* con = new connection();
 	try {
 		con->init();
@@ -138,4 +138,30 @@ vector<int> vehicle_service::get_many(string table) {
 	}
 	delete con;
 	return to_ret;
+}
+
+void vehicle_service::vehicle_exists(int id, string table) {
+	bool flag = false;
+	connection* con = new connection();
+	try {
+		con->init();
+		PreparedStatement* pstmt = con->get_connection()->prepareStatement("SELECT ID FROM " + table + " WHERE ID = ?");
+		pstmt->setInt(1, id);
+		pstmt->execute();
+		ResultSet* rs = pstmt->getResultSet();
+
+		flag = rs->next();
+
+		delete rs;
+		delete pstmt;
+	}
+	catch (SQLException e) {
+		con->get_connection()->rollback();
+		cerr << "Creation unsuccessful! Error message: " << e.what() << endl;
+	}
+	if (!flag) {
+		throw InvalidArgumentException("No user with this ID found!\n");
+		system("exit");
+	}
+	delete con;
 }
