@@ -107,7 +107,7 @@
     <ClCompile Include="v_truck_service.cpp">
       <Filter>Source Files\storefront</Filter>
     </ClCompile>
-    <ClCompile Include="v_two_wheeler_service.cpp">
+    <ClCompile Include="v_motorcycle_service.cpp">
       <Filter>Source Files\storefront</Filter>
     </ClCompile>
   </ItemGroup>

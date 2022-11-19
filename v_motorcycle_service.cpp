@@ -95,3 +95,12 @@ void motorcycle_service::_delete(int id) {
 	__super::_delete(id, "MOTORCYCLES");
 	cout << "Successfully deleted motorcycle with id " << id << endl;
 }
+
+
+vector<int> motorcycle_service::get_many() {
+	return __super::get_many("MOTORCYCLES");
+}
+
+vehicle_c* motorcycle_service::get_one(int id) {
+	return __super::get_one(id, "MOTORCYCLES");
+}

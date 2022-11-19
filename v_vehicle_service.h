@@ -11,6 +11,9 @@ public:
 	vehicle_service();
 	vehicle_c* _create();
 	vehicle_c* _update(int id);
+
 	vehicle_c* _delete(int id, string table);
+	vector<int> get_many(string table);
+	vehicle_c* get_one(int id, string table);
 };
 #endif

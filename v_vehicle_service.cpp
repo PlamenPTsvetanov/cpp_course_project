@@ -60,9 +60,8 @@ vehicle_c* vehicle_service::_delete(int id, string table)  {
 	try {
 		con->init();
 
-		int idx = 1;
 		PreparedStatement* pstmt = con->get_connection()->prepareStatement("DELETE FROM " + table + " WHERE ID = ?");
-		pstmt->setInt(idx++, id);
+		pstmt->setInt(1, id);
 
 		pstmt->execute();
 
@@ -73,4 +72,70 @@ vehicle_c* vehicle_service::_delete(int id, string table)  {
 		cerr << "Deletion unsuccessful! Error message: " << e.what() << endl;
 	}
 	delete con;
+}
+
+vehicle_c* vehicle_service::get_one(int id, string table) {
+	connection* con = new connection();
+	try {
+		con->init();
+
+		PreparedStatement* pstmt = con->get_connection()->prepareStatement("SELECT * FROM " + table + " WHERE ID = ?");
+		pstmt->setInt(1, id);
+
+		pstmt->execute();
+		ResultSet* rs = pstmt->getResultSet();
+	
+		while (rs->next()) {
+			vehicle->set_brand(rs->getString(2));
+			vehicle->set_model(rs->getString(3));
+			vehicle->set_year(rs->getInt(4));
+			vehicle->set_horse_power(rs->getInt(5));
+		}
+
+		delete rs;
+		delete pstmt;
+		delete con;
+
+		return vehicle;
+	}
+	catch (sql::SQLException e) {
+		con->get_connection()->rollback();
+		cerr << "Selection unsuccessful! Error message: " << e.what() << endl;
+	}
+	delete con;
+	return NULL;
+}
+
+vector<int> vehicle_service::get_many(string table) {
+	vector<int> to_ret;
+	connection* con = new connection();
+	try {
+		con->init();
+
+		PreparedStatement* pstmt = con->get_connection()->prepareStatement("SELECT * FROM " + table);
+
+		pstmt->execute();
+		ResultSet* rs = pstmt->getResultSet();
+
+		while (rs->next()) {
+			to_ret.push_back(rs->getInt(1));
+			vehicle->set_brand(rs->getString(2));
+			vehicle->set_model(rs->getString(3));
+			vehicle->set_year(rs->getInt(4));
+			vehicle->set_horse_power(rs->getInt(5));
+
+
+			vehicle->print_data();
+		}
+
+		delete rs;
+		delete pstmt;
+		
+	}
+	catch (sql::SQLException e) {
+		con->get_connection()->rollback();
+		cerr << "Selection unsuccessful! Error message: " << e.what() << endl;
+	}
+	delete con;
+	return to_ret;
 }

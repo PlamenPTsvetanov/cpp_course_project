@@ -151,7 +151,7 @@
     <ClCompile Include="v_truck.cpp" />
     <ClCompile Include="v_truck_service.cpp" />
     <ClCompile Include="v_motorcycle.cpp" />
-    <ClCompile Include="v_two_wheeler_service.cpp" />
+    <ClCompile Include="v_motorcycle_service.cpp" />
     <ClCompile Include="v_vehicle.cpp" />
     <ClCompile Include="v_vehicle_service.cpp" />
   </ItemGroup>

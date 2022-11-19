@@ -12,5 +12,7 @@ public:
 	void _create();
 	void _update(int id);
 	void _delete(int id);
+	vector<int> get_many();
+	vehicle_c* get_one(int id);
 };
 #endif

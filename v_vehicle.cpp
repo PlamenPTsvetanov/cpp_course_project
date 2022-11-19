@@ -49,3 +49,7 @@ void vehicle_c::inherit(vehicle_c* veh) {
 	this->set_horse_power(veh->get_horse_power());
 	this->set_year(veh->get_year());
 }
+
+void vehicle_c::print_data() {
+	cout << "\t|\t" << this->brand << "\t|\t" << this->model << "\t|\t" << this->year_of_construction << "\t|\t" << this->horse_power << "\t|" << endl;
+}

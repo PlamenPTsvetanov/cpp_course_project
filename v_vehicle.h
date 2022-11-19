@@ -26,6 +26,8 @@ public:
 
 	void set_horse_power(int horse_power);
 	
-	virtual void inherit(vehicle_c* parent);
+	void inherit(vehicle_c* parent);
+
+	void print_data();
 };
 #endif
