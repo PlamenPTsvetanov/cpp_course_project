@@ -9,8 +9,8 @@ void printPrimaryMenu() {
 
 int main()
 {
-    buyer_service service;
-    service._log_in("BUYERS");
+    seller_service service;
+    service._log_in("SELLERS");
     service._delete();
     return 0;
 }
