@@ -10,8 +10,6 @@ private:
 public:
 	int get_id();
 
-	string get_type();
-
 	string get_brand();
 
 	string get_model();
@@ -20,8 +18,6 @@ public:
 
 	int get_horse_power();
 
-	void set_type(string type);
-
 	void set_brand(string brand);
 
 	void set_model(string model);
@@ -29,5 +25,7 @@ public:
 	void set_year(int year);
 
 	void set_horse_power(int horse_power);
+	
+	virtual void inherit(vehicle_c* parent);
 };
 #endif

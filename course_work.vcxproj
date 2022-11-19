@@ -147,6 +147,7 @@
     <ClCompile Include="u_seller_service.cpp" />
     <ClCompile Include="u_user_service.cpp" />
     <ClCompile Include="v_sedan.cpp" />
+    <ClCompile Include="v_sedan_service.cpp" />
     <ClCompile Include="v_truck.cpp" />
     <ClCompile Include="v_two_wheeler.cpp" />
     <ClCompile Include="v_vehicle.cpp" />
@@ -169,8 +170,11 @@
     <ClInclude Include="u_user.h" />
     <ClInclude Include="u_user_service.h" />
     <ClInclude Include="v_sedan.h" />
+    <ClInclude Include="v_sedan_service.h" />
     <ClInclude Include="v_truck.h" />
+    <ClInclude Include="v_truck_service.h" />
     <ClInclude Include="v_two_wheeler.h" />
+    <ClInclude Include="v_two_wheeler_service.h" />
     <ClInclude Include="v_vehicle.h" />
     <ClInclude Include="v_vehicle_service.h" />
   </ItemGroup>

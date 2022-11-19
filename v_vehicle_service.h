@@ -9,10 +9,8 @@ class vehicle_service {
 	vehicle_c* vehicle;
 public:
 	vehicle_service();
-	void _create();
-	void _update();
-	void _delete();
-private:
-	int check_vehicle();
+	vehicle_c* _create();
+	vehicle_c* _update(int id);
+	vehicle_c* _delete(int id, string table);
 };
 #endif

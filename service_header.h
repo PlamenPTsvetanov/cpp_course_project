@@ -7,4 +7,5 @@
 #include "v_vehicle_service.h"
 #include "s_ad_service.h"
 #include "storefront_service.h"
+#include "v_sedan_service.h"
 #endif
