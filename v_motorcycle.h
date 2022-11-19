@@ -1,11 +1,11 @@
 #pragma once
-#ifndef two_wheeler_h
-#define two_wheeler_h
+#ifndef motorcycle_h
+#define motorcycle_h
 
 #include "c_common.h"
 #include "v_vehicle.h"
 
-class two_wheeler_c : public vehicle_c {	
+class motorcycle_c : public vehicle_c {
 	bool is_track, is_modded;
 
 public:

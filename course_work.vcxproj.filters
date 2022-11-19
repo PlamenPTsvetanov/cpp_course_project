@@ -98,13 +98,16 @@
     <ClCompile Include="v_sedan.cpp">
       <Filter>Source Files\storefront</Filter>
     </ClCompile>
-    <ClCompile Include="v_two_wheeler.cpp">
+    <ClCompile Include="v_motorcycle.cpp">
       <Filter>Source Files\storefront</Filter>
     </ClCompile>
     <ClCompile Include="v_sedan_service.cpp">
       <Filter>Source Files\storefront</Filter>
     </ClCompile>
     <ClCompile Include="v_truck_service.cpp">
+      <Filter>Source Files\storefront</Filter>
+    </ClCompile>
+    <ClCompile Include="v_two_wheeler_service.cpp">
       <Filter>Source Files\storefront</Filter>
     </ClCompile>
   </ItemGroup>
@@ -166,7 +169,7 @@
     <ClInclude Include="v_sedan.h">
       <Filter>Header Files\storefront\vehicle</Filter>
     </ClInclude>
-    <ClInclude Include="v_two_wheeler.h">
+    <ClInclude Include="v_motorcycle.h">
       <Filter>Header Files\storefront\vehicle</Filter>
     </ClInclude>
     <ClInclude Include="v_sedan_service.h">
@@ -175,7 +178,7 @@
     <ClInclude Include="v_truck_service.h">
       <Filter>Header Files\storefront\vehicle</Filter>
     </ClInclude>
-    <ClInclude Include="v_two_wheeler_service.h">
+    <ClInclude Include="v_motorcycle_service.h">
       <Filter>Header Files\storefront\vehicle</Filter>
     </ClInclude>
   </ItemGroup>

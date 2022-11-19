@@ -8,5 +8,6 @@
 #include "s_ad_service.h"
 #include "storefront_service.h"
 #include "v_sedan_service.h"
+#include "v_motorcycle_service.h"
 #include "v_truck_service.h"
 #endif

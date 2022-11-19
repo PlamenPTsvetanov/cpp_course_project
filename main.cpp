@@ -9,9 +9,8 @@ void printPrimaryMenu() {
 
 int main()
 {
-    truck_service service;
+    motorcycle_service service;
   
-    service._delete(1);
     return 0;
 }
 
