@@ -160,9 +160,6 @@
     <ClInclude Include="s_ad_service.h">
       <Filter>Header Files\storefront\ad</Filter>
     </ClInclude>
-    <ClInclude Include="service_header.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="storefront.h">
       <Filter>Header Files\storefront</Filter>
     </ClInclude>
@@ -186,6 +183,9 @@
     </ClInclude>
     <ClInclude Include="v_motorcycle_service.h">
       <Filter>Header Files\storefront\vehicle</Filter>
+    </ClInclude>
+    <ClInclude Include="service_header.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

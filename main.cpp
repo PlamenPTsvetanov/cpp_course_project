@@ -9,9 +9,13 @@ void printPrimaryMenu() {
 
 int main()
 {
-    seller_service service;
-    service._log_in("SELLERS");
-    service._delete();
+    ad_service a_service;
+    seller_service s_service;
+    
+    s_service._log_in("SELLERS");
+    int id  =s_service._logged_in_id();
+    cout << id << endl;
+    a_service._create(id, 1, "sedan");
     return 0;
 }
 

@@ -12,7 +12,7 @@ private:
 	
 public:
 	ad_service();
-	void _create(int user_id, int vehicle_id);
+	void _create(int user_id, int vehicle_id, string v_type);
 	void _update(int add_id);
 	void _delete(int add_id);
 	void load_user_ads(int user_id);

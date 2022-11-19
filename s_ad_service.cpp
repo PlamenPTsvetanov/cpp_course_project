@@ -4,13 +4,12 @@ ad_service::ad_service() {
 	this->ad = new ad_c();
 }
 
-void ad_service::_create(int user_id, int vehicle_id) {
+void ad_service::_create(int user_id, int vehicle_id, string v_type) {
 	double price;
 	string title, additional_info;
-	
 	ad->set_seller_id(user_id);
 	ad->set_vehicle_id(vehicle_id);
-	ad->set_date();
+	ad->set_vehicle_type(v_type);
 
 	cout << "Enter title of ad:" << endl;
 	cin >> ws;
@@ -36,9 +35,9 @@ void ad_service::_create(int user_id, int vehicle_id) {
 		pstmt->setInt(idx++, 0);
 		pstmt->setInt(idx++, ad->get_seller_id());
 		pstmt->setInt(idx++, ad->get_vehicle_id());
+		pstmt->setString(idx++, ad->get_vehicle_type());
 		pstmt->setString(idx++, ad->get_title());
 		pstmt->setDouble(idx++, ad->get_price());
-		pstmt->setDateTime(idx++, ad->get_date());
 		pstmt->setString(idx, ad->get_additional_info());
 
 		pstmt->execute();
@@ -54,12 +53,10 @@ void ad_service::_create(int user_id, int vehicle_id) {
 
 }
 
-void ad_service::_update(int add_id) {
+void ad_service::_update(int ad_id) {
 
 	double price;
 	string title, additional_info;
-
-	ad->set_date();
 
 	cout << "Enter title of ad:" << endl;
 	cin >> ws;
@@ -84,7 +81,7 @@ void ad_service::_update(int add_id) {
 		pstmt->setString(idx++, ad->get_title());
 		pstmt->setDouble(idx++, ad->get_price());
 		pstmt->setString(idx++, ad->get_additional_info());
-		pstmt->setInt(idx, add_id);
+		pstmt->setInt(idx, ad_id);
 
 		pstmt->execute();
 
