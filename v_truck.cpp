@@ -23,3 +23,7 @@ void truck_c::set_weight(int weight) {
 void truck_c::set_is_special_use(bool special_use) {
 	this->is_special_use = special_use;
 }
+
+void truck_c::inherit(vehicle_c* v) {
+	__super::inherit(v);
+}

@@ -22,6 +22,8 @@ public:
 	void set_weight(int weight);
 
 	void set_is_special_use(bool special_use);
+
+	void inherit(vehicle_c* parent);
 };
 
 

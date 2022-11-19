@@ -44,5 +44,8 @@ void vehicle_c::set_horse_power(int horse_power) {
 }
 
 void vehicle_c::inherit(vehicle_c* veh) {
-	return;
+	this->set_brand(veh->get_brand());
+	this->set_model(veh->get_model());
+	this->set_horse_power(veh->get_horse_power());
+	this->set_year(veh->get_year());
 }

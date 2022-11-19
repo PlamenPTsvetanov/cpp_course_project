@@ -17,9 +17,6 @@ void sedan_c::set_is_all_wheel_drive(bool all_wheel) {
 	this->is_all_wheel_drive = all_wheel;
 }
 
-void sedan_c::inherit(vehicle_c* parent) {
-	__super::set_brand(parent->get_brand());
-	__super::set_model(parent->get_model());
-	__super::set_horse_power(parent->get_horse_power());
-	__super::set_year(parent->get_year());
+void sedan_c::inherit(vehicle_c* v) {
+	__super::inherit(v);
 }

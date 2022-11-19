@@ -9,22 +9,9 @@ void printPrimaryMenu() {
 
 int main()
 {
-    user_service u_service;
-
-
-    int command = -1;
-    printPrimaryMenu();
-
-    cin >> command;
-    while (command != 0) {
-        if (command == 1)
-        {
-
-        }
-
-        cin >> command;
-    }
+    truck_service service;
   
+    service._delete(1);
     return 0;
 }
 

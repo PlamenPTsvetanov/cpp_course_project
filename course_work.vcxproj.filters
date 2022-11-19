@@ -104,6 +104,9 @@
     <ClCompile Include="v_sedan_service.cpp">
       <Filter>Source Files\storefront</Filter>
     </ClCompile>
+    <ClCompile Include="v_truck_service.cpp">
+      <Filter>Source Files\storefront</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="c_common.h">
