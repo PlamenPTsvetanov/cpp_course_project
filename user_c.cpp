@@ -26,6 +26,11 @@ string user_c::get_password()
     return this->password;
 };
 
+string user_c::get_type()
+{
+    return this->type;
+};
+
 void user_c::set_id(int id)
 {
     this->id = id;
@@ -57,6 +62,10 @@ string user_c::get_admin_remark() {
 
 void user_c::set_admin_remark(string remark) {
     this->admin_remark = remark;
+}
+
+void user_c::set_type(string type) {
+    this->type = type;
 }
 
 void user_c::inherit(user_c* parent) {

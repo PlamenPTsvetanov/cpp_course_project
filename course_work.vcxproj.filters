@@ -77,12 +77,6 @@
     <ClCompile Include="s_ad_service.cpp">
       <Filter>Source Files\storefront</Filter>
     </ClCompile>
-    <ClCompile Include="storefront.cpp">
-      <Filter>Source Files\storefront</Filter>
-    </ClCompile>
-    <ClCompile Include="storefront_service.cpp">
-      <Filter>Source Files\storefront</Filter>
-    </ClCompile>
     <ClCompile Include="v_truck.cpp">
       <Filter>Source Files\storefront</Filter>
     </ClCompile>

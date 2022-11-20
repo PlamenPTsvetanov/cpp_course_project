@@ -48,7 +48,7 @@ void seller_service::_create() {
     delete con;
 }
 
-void seller_service::_update() {
+void seller_service::_update(int id) {
     string email, telephone, info;
     cout << "Update email:" << endl;
     cin >> email;
@@ -71,7 +71,7 @@ void seller_service::_update() {
         pstmt->setString(idx++, seller->get_email());
         pstmt->setString(idx++, seller->get_telephone());
         pstmt->setString(idx++, seller->get_payment_info());
-        pstmt->setInt(idx,  _logged_in_id());
+        pstmt->setInt(idx, id);
 
         pstmt->execute();
         cout << "Seller " << user->get_username() << " now has email -> " << email 
@@ -87,8 +87,7 @@ void seller_service::_update() {
     delete con;
 }
 
-void seller_service::_delete() {
-    int id = _logged_in_id();
+void seller_service::_delete(int id) {
     __super::_delete(id, "SELLERS");
 
     cout << "Deleted seller with id: " << id << endl;

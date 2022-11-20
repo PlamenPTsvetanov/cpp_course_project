@@ -9,7 +9,7 @@ class seller_service : public user_service {
 public:
 	seller_service();
 	void _create();
-	void _update();
-	void _delete();
+	void _update(int id);
+	void _delete(int id);
 };
 #endif

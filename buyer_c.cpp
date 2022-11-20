@@ -1,6 +1,6 @@
 #include "u_buyer.h"
 
-void buyer_c::add_to_wallet(double amount) {
+void buyer_c::set_wallet(double amount) {
 	this->wallet += amount;
 }
 

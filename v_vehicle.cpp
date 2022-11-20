@@ -19,6 +19,11 @@ int vehicle_c::get_horse_power() {
 	return this->horse_power;
 }
 
+void vehicle_c::set_id(int id) {
+	this->id = id;
+}
+
+
 void vehicle_c::set_brand(string brand) {
 	this->brand = brand;
 }
@@ -51,5 +56,5 @@ void vehicle_c::inherit(vehicle_c* veh) {
 }
 
 void vehicle_c::print_data() {
-	cout << "\t|\t" << this->brand << "\t|\t" << this->model << "\t|\t" << this->year_of_construction << "\t|\t" << this->horse_power << "\t|" << endl;
+	cout << "\t|\t" << this->id << "\t|\t" << this->brand << "\t|\t" << this->model << "\t|\t" << this->year_of_construction << "\t|\t" << this->horse_power << "\t|" << endl;
 }

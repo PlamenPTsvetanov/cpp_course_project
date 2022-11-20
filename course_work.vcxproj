@@ -133,8 +133,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="storefront.cpp" />
-    <ClCompile Include="storefront_service.cpp" />
     <ClCompile Include="s_ad.cpp" />
     <ClCompile Include="buyer_c.cpp" />
     <ClCompile Include="connection.cpp" />

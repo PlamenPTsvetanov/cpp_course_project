@@ -119,6 +119,7 @@ vector<int> vehicle_service::get_many(string table) {
 
 		while (rs->next()) {
 			to_ret.push_back(rs->getInt(1));
+			vehicle->set_id(rs->getInt(1));
 			vehicle->set_brand(rs->getString(2));
 			vehicle->set_model(rs->getString(3));
 			vehicle->set_year(rs->getInt(4));

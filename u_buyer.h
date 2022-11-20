@@ -8,7 +8,7 @@ private:
 	double wallet;
 
 public:
-	void add_to_wallet(double amount);
+	void set_wallet(double amount);
 
 	double get_wallet();
 };

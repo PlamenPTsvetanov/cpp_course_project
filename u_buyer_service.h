@@ -9,8 +9,9 @@ class buyer_service : public user_service {
 	public:
 		buyer_service();
 		void _create();
-		void _update();
-		void _delete();
+		void _update(int id);
+		void _delete(int id);
+		buyer_c* get_one(int id);
 };
 
 #endif // !buyer_service_h

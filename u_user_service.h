@@ -18,12 +18,14 @@ public:
 
     void _delete(int id, string table);
 
-    user_c* _log_in(string table);
+    user_c* _log_in();
 
-    void _log_out();
+    void _log_out(user_c* userc);
 
     void user_exists(int id, string table);
 
     int _logged_in_id();
+
+    void get_many(string table);
 };
 #endif

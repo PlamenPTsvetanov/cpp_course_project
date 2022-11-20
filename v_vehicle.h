@@ -18,6 +18,8 @@ public:
 
 	int get_horse_power();
 
+	void set_id(int id);
+
 	void set_brand(string brand);
 
 	void set_model(string model);
