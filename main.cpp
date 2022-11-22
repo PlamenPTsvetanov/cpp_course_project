@@ -6,9 +6,10 @@ seller_service s_service;
 buyer_service b_service;
 ad_service a_service;
 vehicle_service v_service;
+admin_service adm_service;
 
 void printPrimaryMenu() {
-    cout << "\n\nDo you wish to\n\t1.Log in\n\t2.Sign up\n\t3.Log out\n\t0.Exit" << endl;
+    cout << "\n\nDo you wish to\n\t1.Log in\n\t2.Sign up\n\t0.Exit" << endl;
 }
 
 void printUserTypesMenu() {
@@ -18,6 +19,10 @@ void printUserTypesMenu() {
 void actionsMenu(user_c* logged_user, int* command);
 
 void profileManagementMenu(user_c* logged_user, int* command);
+
+void adminManageAds();
+
+void adminManageObjects();
 
 int main()
 {
@@ -35,7 +40,6 @@ int main()
                 while (command != 0) {
                     actionsMenu(logged_user, &command);
                 }
-                delete logged_user;
             }
             catch (InvalidArgumentException ex) {
                 cerr << ex.what() << endl;
@@ -56,14 +60,6 @@ int main()
             }
             else {
                 cerr << "Invalid command! Try Again!" << endl;
-            }
-        }
-        else if (command == 3) {
-            try {
-                u_service._log_out(logged_user);
-            }
-            catch (InvalidArgumentException ex) {
-                cerr << ex.what() << endl;
             }
         }
         else if (command == 0) {
@@ -150,7 +146,16 @@ void actionsMenu(user_c* logged_user, int* command) {
         }
         
     }
-    else if(logged_user->get_type() == "admin")
+    else if (logged_user->get_type() == "admin") {
+        cout << "2.Manage ads\n3.Manage objects\n0.Return\n" << endl;
+        cin >> *command;
+        if (*command == 2) {
+            adminManageAds();
+        }
+        else if (*command == 3 ) {
+            adminManageObjects();
+        }
+    }
 }
 
 void profileManagementMenu(user_c* logged_user, int* command) {
@@ -182,4 +187,52 @@ void profileManagementMenu(user_c* logged_user, int* command) {
     else {
         cerr << "Invalid command!" << endl;
     }
-}
+};
+
+void adminManageAds() {
+    a_service.load_user_ads(-1);
+    cout << "Ad id to delete: (Press 0 to exit)" << endl;
+    int id;
+    cin >> id;
+
+    if (id == 0) {
+        return;
+    }
+
+    a_service._delete(id);
+};
+
+void adminManageObjects() {
+    int action;
+    cout << "1.Update\n2.Delete" << endl;
+    cin >> action;
+
+    cout << "1.Buyers\n2.Sellers\n3.Admins\n4.Sedans\n5.Trucks\n6.Motorcycles\n0.Return\n";
+    int object;
+    cin >> object;
+    if (object == 0) {
+        return;
+    }
+    string type = object == 1 ? "buyers" : object == 2 ? "sellers" : object == 3 ? "admins" : object == 4 ? "sedans" : object == 5 ? "trucks" : "motorcycles";
+
+    if (object < 4) {
+        u_service.get_many(type);
+    }
+    else {
+        v_service.get_many(type);
+    }
+
+    cout << "Enter id:\n";
+    int id;
+    cin >> id;
+
+    if (action == 1) {
+        adm_service._update(id, type);
+    }
+    else if (action == 2) {
+        adm_service._delete(id, type);
+    }
+    else {
+        cerr << "Invalid command\n";
+    }
+};

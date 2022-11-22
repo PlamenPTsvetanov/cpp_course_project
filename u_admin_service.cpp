@@ -116,6 +116,7 @@ void admin_service::_update(int id, string table) {
         delete con;
     }
     else if (table == "sedans" || table == "trucks" || table == "motorcycles") {
+        cout << "Here\n";
         vehicle_exists(id, table);
         connection* con = new connection();
         try {
@@ -146,6 +147,7 @@ void admin_service::_update(int id, string table) {
         throw invalid_argument("Table not found");
     }
 } 
+
 
 void admin_service::get_all_vehicles() {
     connection* con = new connection();

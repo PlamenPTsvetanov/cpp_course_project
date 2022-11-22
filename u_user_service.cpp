@@ -76,6 +76,7 @@ void user_service::_delete(int id, string table) {
 /// Логва потребител в системата
 /// </summary>
 user_c* user_service::_log_in() {
+    user = new user_c();
     cout << "Enter your username:" << endl;
     cin >> in_username;
     cout << "Enter your password:" << endl;
@@ -87,7 +88,6 @@ user_c* user_service::_log_in() {
     connection* con = new connection();
     int id = -1;
     try {
-        
         con->init();
 
         
@@ -181,6 +181,7 @@ user_c* user_service::_log_in() {
 void user_service::_log_out(user_c* userc) {
     delete user;
     delete userc;
+    user = new user_c();
     cout << "Logged out!" << endl;
 }
 
@@ -205,7 +206,7 @@ void user_service::user_exists(int id, string table) {
     }
     catch (SQLException e) {
         con->get_connection()->rollback();
-        cerr << "Creation unsuccessful! Error message: " << e.what() << endl;
+        cerr << "Selection unsuccessful! Error message: " << e.what() << endl;
     }
     if (!flag) {
         throw InvalidArgumentException("No user with this ID found!\n");

@@ -11,6 +11,7 @@ public:
 	void get_all_users();
 	void get_all_vehicles();
 	void _update(int id, string table);
+	void _update(int id, string table, bool full);
 	void _delete(int id, string table);
 };
 #endif
